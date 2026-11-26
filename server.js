@@ -145,6 +145,8 @@ CONTRASTE CLAVE de la marca: la persona es 100% fotografía real y el agente es 
 
 LAPTOP: la persona sostiene o usa una laptop plateada genérica (sin logotipo), inclinada hacia ella, como herramienta de trabajo compartida con el agente.
 
+ESPÍRITU DE MARCA (valores de monday.com): la persona es la PROTAGONISTA y el logro es suyo; el agente está a su servicio, ayudándola a tener éxito, nunca le roba el protagonismo (la persona ligeramente más al frente o más centrada). Transmite confianza, cercanía y complicidad genuina entre ambos, y la energía de dos "constructores" creando algo juntos.
+
 SET (mundo híbrido de monday.com, limpio como estudio):
 - Fondo continuo de estudio sin costuras, plano y liso, en UN solo tono suave: gris claro, blanco, beige o rosa palo (rubor). Sin paredes, sin oficina, sin decoración, sin formas gráficas.
 - Atrezzo mínimo y simple solo si la escena lo pide: un taburete negro, una silla sencilla, una caja de madera o una pila de libros.
