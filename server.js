@@ -107,11 +107,11 @@ function getBaseUrl(req) {
 
 // Escenas de colaboración humano + agente
 const SCENES = [
-  'trabajando juntos frente a una pantalla con un tablero de proyecto',
-  'chocando los cinco celebrando que alcanzaron un objetivo',
-  'resolviendo un desafío en equipo, señalando una pizarra con ideas',
-  'impulsando un proyecto, caminando lado a lado con energía',
-  'posando hombro con hombro como un solo equipo'
+  'la persona sentada en un taburete alto con una laptop abierta sobre las piernas, girada hacia el agente y gesticulando mientras le explica una idea; el agente de pie a su lado, inclinado hacia ella con una mano apoyada en su hombro',
+  'la persona de pie sosteniendo una laptop bajo el brazo, riendo a mitad de una carcajada junto al agente, que está de pie a su lado con postura relajada y divertida',
+  'la persona sentada en ángulo sobre una caja de madera clara con las piernas extendidas, tecleando en una laptop; el agente agachado a su lado mirando la pantalla con interés, como colaborador activo',
+  'la persona sentada en una silla sencilla con la laptop sobre las rodillas, mirando segura y directo a la cámara; el agente de pie detrás de ella, apoyado en el respaldo, también mirando a la cámara',
+  'la persona sentada sobre una pila de libros grandes, con la laptop abierta sobre las piernas, chocando los cinco con el agente, que está de pie frente a ella celebrando'
 ];
 
 // Ruta principal
@@ -128,25 +128,30 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
     }
     const agentPath = path.join(__dirname, 'public', 'agents', `agent-${agentId}.jpg`);
     const scene = SCENES[Math.floor(Math.random() * SCENES.length)];
-    const prompt = `Tienes dos imágenes de referencia. La PRIMERA es una foto de una persona real. La SEGUNDA es un personaje 3D estilo claymorphism (el "agente" de monday.com) sobre fondo verde.
-Genera UNA sola escena nueva, vertical 3:4, donde esa persona y ese agente aparecen juntos ${scene}, como compañeros de equipo (human + agent).
+    const prompt = `Tienes dos imágenes de referencia. La PRIMERA es una foto de una persona real. La SEGUNDA es un personaje 3D estilizado (el "agente" de monday.com).
+Genera UNA sola fotografía nueva, vertical 3:4, al estilo de la campaña "Usuarios y agentes" de monday.com: ${scene}. Son compañeros de equipo (human + agent).
+
 PERSONA (lo más importante: debe verse como una FOTOGRAFÍA REAL, no como ilustración ni render):
 - Conserva con total fidelidad su identidad: forma del rostro, ojos, nariz, boca, cejas, tono de piel, edad, peinado, vello facial, lentes y complexión. Debe ser reconocible al instante como la misma persona.
 - Fotorrealismo de cámara profesional: textura natural de la piel con poros y pequeñas imperfecciones, cabello con mechones individuales, brillo natural en los ojos, ropa con pliegues y textura de tela reales.
 - NO piel plástica ni suavizada, NO filtro de belleza, NO estilo caricatura, 3D o pintura en la persona. Proporciones anatómicas correctas en manos y dedos.
-- Expresión natural y auténtica (sonrisa genuina, mirada viva), postura relajada y creíble.
-- Fotografiada como con una cámara full frame con lente de 50-85 mm, f/2.8, enfoque nítido en el rostro y ligera profundidad de campo.
+- Expresión segura y auténtica: mirando directo a la cámara con confianza, o a mitad de una risa genuina con el agente. Nunca sorprendida ni rígida.
+- Pose gráfica y ligeramente juguetona (en ángulo, piernas extendidas o cruzadas, cuerpo girado), NO un retrato corporativo rígido.
+- Vestuario casual-cool: jeans, tenis, camiseta o camisa sencilla y una prenda exterior llamativa (chamarra, overshirt o blazer). Si en la foto se ve su ropa y encaja con este estilo, consérvala.
 
-AGENTE: mantén su diseño, forma, colores, materiales y estilo 3D claymorphism exactamente como en la referencia. Debe integrarse en la misma escena con la misma luz, sombras de contacto y reflejos coherentes, como si estuviera físicamente ahí junto a la persona.
+AGENTE: es un personaje 3D estilizado de la marca (formas suaves y exageradas, materiales mate tipo arcilla, colores saturados). Mantén su diseño, rostro, peinado, accesorios (audífonos, lentes), ropa, colores y estilo exactamente como en la referencia; NO lo conviertas en humano ni cambies su estilo. Es de cuerpo completo y aproximadamente de la misma estatura que una persona adulta. Actúa como colaborador activo (mira, señala, se inclina, toca el hombro), no como un muñeco o adorno.
 
-COMPOSICIÓN: ambos de cuerpo completo o 3/4, a escala coherente, con interacción natural entre ambos (miradas, gestos o contacto).
+CONTRASTE CLAVE de la marca: la persona es 100% fotografía real y el agente es 100% personaje 3D estilizado; conviven en la misma foto, con la misma luz y sombras de contacto en el piso, como si el agente estuviera físicamente ahí.
 
-AMBIENTE con la identidad visual de monday.com:
-- Oficina creativa moderna, luminosa y optimista, con fondo blanco y gris muy claro y acentos vibrantes en la paleta de la marca: morado-azul (#6161FF), rosa-rojo (#FB275D), amarillo (#FFCC00) y verde (#00CA72).
-- Elementos inspirados en su producto: pantallas grandes y paredes con tableros de trabajo de filas y columnas de "estatus" en barras redondeadas de colores (verde, amarillo, rojo, morado), notas adhesivas de colores, formas geométricas suaves con esquinas redondeadas, plantas y mobiliario de diseño.
-- Iluminación natural suave de ventanal combinada con luz de estudio, colores limpios y saturados, ambiente de colaboración y energía. Fondo ligeramente desenfocado para que destaquen la persona y el agente.
+LAPTOP: la persona sostiene o usa una laptop plateada genérica (sin logotipo), inclinada hacia ella, como herramienta de trabajo compartida con el agente.
 
-SIN TEXTO legible, SIN LETRAS, SIN LOGOS, SIN PALABRAS en ninguna parte de la imagen (las pantallas y tableros solo muestran barras y bloques de color).`;
+SET (mundo híbrido de monday.com, limpio como estudio):
+- Fondo continuo de estudio sin costuras, plano y liso, en UN solo tono suave: gris claro, blanco, beige o rosa palo (rubor). Sin paredes, sin oficina, sin decoración, sin formas gráficas.
+- Atrezzo mínimo y simple solo si la escena lo pide: un taburete negro, una silla sencilla, una caja de madera o una pila de libros.
+- Iluminación de estudio uniforme, brillante y limpia, con sombras suaves y controladas; plana y fresca, nada dramática ni melancólica. Colores naturales, con el agente aportando el color vibrante.
+- Encuadre de cuerpo completo o 3/4, personajes centrados con aire alrededor. Grano fotográfico muy fino y sutil.
+
+SIN TEXTO, SIN LETRAS, SIN LOGOS, SIN PALABRAS en ninguna parte de la imagen.`;
 
     if (!req.file) {
       return res.status(400).json({ error: 'La imagen es requerida' });
