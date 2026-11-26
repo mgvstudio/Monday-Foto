@@ -130,9 +130,23 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
     const scene = SCENES[Math.floor(Math.random() * SCENES.length)];
     const prompt = `Tienes dos imágenes de referencia. La PRIMERA es una foto de una persona real. La SEGUNDA es un personaje 3D estilo claymorphism (el "agente" de monday.com) sobre fondo verde.
 Genera UNA sola escena nueva, vertical 3:4, donde esa persona y ese agente aparecen juntos ${scene}, como compañeros de equipo (human + agent).
-Reglas: mantén el rostro, rasgos, tono de piel y peinado de la persona fielmente (estilo fotográfico realista); mantén el diseño, colores y estilo 3D del agente exactamente como en la referencia; ambos de cuerpo completo o 3/4, con interacción natural entre ambos.
-Ambiente: espacio moderno y luminoso con degradados morados, azules y rosados, iluminación cinematográfica suave, ultra detallado.
-SIN TEXTO, SIN LETRAS, SIN LOGOS, SIN PALABRAS en la imagen.`;
+PERSONA (lo más importante: debe verse como una FOTOGRAFÍA REAL, no como ilustración ni render):
+- Conserva con total fidelidad su identidad: forma del rostro, ojos, nariz, boca, cejas, tono de piel, edad, peinado, vello facial, lentes y complexión. Debe ser reconocible al instante como la misma persona.
+- Fotorrealismo de cámara profesional: textura natural de la piel con poros y pequeñas imperfecciones, cabello con mechones individuales, brillo natural en los ojos, ropa con pliegues y textura de tela reales.
+- NO piel plástica ni suavizada, NO filtro de belleza, NO estilo caricatura, 3D o pintura en la persona. Proporciones anatómicas correctas en manos y dedos.
+- Expresión natural y auténtica (sonrisa genuina, mirada viva), postura relajada y creíble.
+- Fotografiada como con una cámara full frame con lente de 50-85 mm, f/2.8, enfoque nítido en el rostro y ligera profundidad de campo.
+
+AGENTE: mantén su diseño, forma, colores, materiales y estilo 3D claymorphism exactamente como en la referencia. Debe integrarse en la misma escena con la misma luz, sombras de contacto y reflejos coherentes, como si estuviera físicamente ahí junto a la persona.
+
+COMPOSICIÓN: ambos de cuerpo completo o 3/4, a escala coherente, con interacción natural entre ambos (miradas, gestos o contacto).
+
+AMBIENTE con la identidad visual de monday.com:
+- Oficina creativa moderna, luminosa y optimista, con fondo blanco y gris muy claro y acentos vibrantes en la paleta de la marca: morado-azul (#6161FF), rosa-rojo (#FB275D), amarillo (#FFCC00) y verde (#00CA72).
+- Elementos inspirados en su producto: pantallas grandes y paredes con tableros de trabajo de filas y columnas de "estatus" en barras redondeadas de colores (verde, amarillo, rojo, morado), notas adhesivas de colores, formas geométricas suaves con esquinas redondeadas, plantas y mobiliario de diseño.
+- Iluminación natural suave de ventanal combinada con luz de estudio, colores limpios y saturados, ambiente de colaboración y energía. Fondo ligeramente desenfocado para que destaquen la persona y el agente.
+
+SIN TEXTO legible, SIN LETRAS, SIN LOGOS, SIN PALABRAS en ninguna parte de la imagen (las pantallas y tableros solo muestran barras y bloques de color).`;
 
     if (!req.file) {
       return res.status(400).json({ error: 'La imagen es requerida' });
