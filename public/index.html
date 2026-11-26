@@ -12,24 +12,23 @@
 @font-face{font-family:'Poppins';font-weight:600;src:url(fonts-poppins/Poppins-SemiBold.ttf) format('truetype')}
 @font-face{font-family:'Poppins';font-weight:700;src:url(fonts-poppins/Poppins-Bold.ttf) format('truetype')}
 @font-face{font-family:'Poppins';font-weight:800;src:url(fonts-poppins/Poppins-ExtraBold.ttf) format('truetype')}
-:root{--bg:#181b34;--card:#232647;--violet:#a79ff0;--purple:#6161ff;--green:#00ca72;--yellow:#ffcb00;--red:#fb275d;--text:#fff;--muted:#b4b7d6}
+:root{--bg:#ffffff;--card:#f5f6f8;--violet:#6161ff;--purple:#6161ff;--green:#00ca72;--yellow:#ffcb00;--red:#fb275d;--text:#181b34;--muted:#676879}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;
-  background-image:radial-gradient(circle at 15% 10%,rgba(97,97,255,.25),transparent 40%),radial-gradient(circle at 90% 90%,rgba(0,202,114,.15),transparent 40%)}
-.logo{position:fixed;top:18px;right:28px;font-weight:800;font-size:1.7rem;letter-spacing:-1px;z-index:10;display:flex;align-items:center;gap:6px}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.logo{position:fixed;top:18px;left:28px;font-weight:800;font-size:1.7rem;letter-spacing:-1px;z-index:10;display:flex;align-items:center;gap:6px}
 .logo small{font-size:.6em;font-weight:600;color:var(--muted)}
 .logo img{height:46px}
 .logo .dots{display:inline-flex;gap:3px}.logo .dots i{display:block;width:8px;height:22px;border-radius:5px;transform:skewX(-20deg)}
 .screen{display:none;min-height:100vh;padding:90px 24px 40px;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .screen.active{display:flex}
-h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:800;line-height:1.05;text-transform:uppercase}
+h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:500;line-height:1.05;letter-spacing:-1.5px}
 h1 .light{color:var(--violet)}h1 .plus{color:var(--green)}
 .sub{font-weight:600;margin:10px 0 24px;font-size:1.15rem}
 .desc{max-width:640px;color:var(--muted);line-height:1.5;margin-bottom:26px}
-.panel{background:var(--card);border:1px solid rgba(167,159,240,.25);border-radius:20px;padding:28px;max-width:520px;width:100%}
+.panel{background:var(--card);border:1px solid #e6e9ef;border-radius:20px;padding:28px;max-width:520px;width:100%}
 .btn{background:var(--purple);color:#fff;border:0;border-radius:50px;padding:14px 34px;font:600 1.05rem 'Poppins';cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:10px;justify-content:center}
 .btn:hover:not(:disabled){transform:translateY(-2px);background:#7878ff}
-.btn:disabled{background:#4a4d70;cursor:not-allowed;opacity:.7}
+.btn:disabled{background:#c3c6d4;cursor:not-allowed;opacity:.7}
 .btn.green{background:var(--green);color:#0b2a1b}.btn.ghost{background:transparent;border:2px solid var(--violet);color:var(--violet)}
 .terms{display:flex;gap:10px;align-items:center;justify-content:center;margin:16px 0 22px;font-weight:500}
 .terms input{width:20px;height:20px;accent-color:var(--purple)}.terms a{color:var(--violet)}
@@ -44,8 +43,8 @@ h1 .light{color:var(--violet)}h1 .plus{color:var(--green)}
 .preview button{position:absolute;top:-10px;right:-10px;width:30px;height:30px;border-radius:50%;border:0;background:var(--red);color:#fff;font-size:1.2rem;cursor:pointer}
 .row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .result{display:flex;gap:40px;align-items:center;justify-content:center;flex-wrap:wrap;max-width:1000px}
-.result img.main{max-height:70vh;max-width:min(90vw,460px);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.qrbox{background:#fff;color:#181b34;border-radius:18px;padding:18px;text-align:center}
+.result img.main{max-height:70vh;max-width:min(90vw,460px);border-radius:20px;box-shadow:0 20px 50px rgba(24,27,52,.18)}
+.qrbox{background:#fff;color:#181b34;border:1px solid #e6e9ef;box-shadow:0 8px 30px rgba(24,27,52,.08);border-radius:18px;padding:18px;text-align:center}
 .qrbox img{width:200px;height:200px;display:block;margin:10px auto}
 .qrbox p{font-weight:600;max-width:220px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
@@ -54,17 +53,17 @@ h1 .light{color:var(--violet)}h1 .plus{color:var(--green)}
 .modal li{margin:0 0 12px 18px}
 #cameraModal video{max-width:92vw;max-height:72vh;border-radius:16px;background:#000;transform:scaleX(-1)}
 #countdown{position:absolute;font-size:9rem;font-weight:800;text-shadow:0 0 30px rgba(0,0,0,.8);display:none;pointer-events:none}
-#cameraModal .box{background:var(--card);color:#fff;text-align:center;position:relative}
-#loading{position:fixed;inset:0;background:rgba(24,27,52,.94);z-index:200;display:none;flex-direction:column;gap:20px;align-items:center;justify-content:center;font-weight:600;font-size:1.2rem}
+#cameraModal .box{background:#fff;color:var(--text);text-align:center;position:relative}
+#loading{position:fixed;inset:0;background:rgba(255,255,255,.96);color:var(--text);z-index:200;display:none;flex-direction:column;gap:20px;align-items:center;justify-content:center;font-weight:600;font-size:1.2rem}
 .spin{width:64px;height:64px;border-radius:50%;border:6px solid var(--card);border-top-color:var(--green);border-right-color:var(--purple);border-bottom-color:var(--yellow);animation:r 1s linear infinite}
 @keyframes r{to{transform:rotate(360deg)}}
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--red);padding:12px 24px;border-radius:12px;transition:.3s;z-index:300;font-weight:600}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--red);color:#fff;padding:12px 24px;border-radius:12px;transition:.3s;z-index:300;font-weight:600}
 #toast.show{transform:translateX(-50%) translateY(0)}
-@media(max-width:800px){.agents{grid-template-columns:repeat(2,1fr)}.logo{right:14px;font-size:1.3rem}.screen{padding-top:70px}}
+@media(max-width:800px){.agents{grid-template-columns:repeat(2,1fr)}.logo{left:14px;font-size:1.3rem}.screen{padding-top:70px}}
 </style>
 </head>
 <body oncontextmenu="return false;">
-<div class="logo"><img src="img/monday-logo.png" alt="" onerror="this.remove();document.getElementById('wm').style.display='flex'"><span id="wm" style="display:none;align-items:center;gap:6px"><span class="dots"><i style="background:#fb275d"></i><i style="background:#ffcb00"></i><i style="background:#00ca72"></i></span>monday<small>.com</small></span></div>
+<div class="logo"><img src="img/monday-logo-dark.png" alt="monday.com" onerror="this.remove();document.getElementById('wm').style.display='flex'"><span id="wm" style="display:none;align-items:center;gap:6px"><span class="dots"><i style="background:#fb275d"></i><i style="background:#ffcb00"></i><i style="background:#00ca72"></i></span>monday<small>.com</small></span></div>
 
 <!-- 1. Bienvenida + términos -->
 <section class="screen active" id="s-welcome">
