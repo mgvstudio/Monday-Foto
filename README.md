@@ -1,4 +1,4 @@
-# � CESSA Universidad - Generador de Fotos de Graduación
+Generador de Fotos 
 
 Webapp para generar fotos formales de graduación universitaria con IA usando **Google Gemini 2.5 Flash Image** en base a la foto del estudiante.
 
