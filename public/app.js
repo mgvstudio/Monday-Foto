@@ -131,7 +131,7 @@ $('generateBtn').addEventListener('click', async () => {
         window.lastDownloadUrl = data.downloadUrl;
         show('s-result');
         if (window.confetti) {
-            confetti({ particleCount: 120, spread: 80, origin: { y: .6 }, colors: ['#6161ff', '#00ca72', '#ffcb00', '#fb275d', '#ffffff'] });
+            confetti({ particleCount: 120, spread: 80, origin: { y: .6 }, colors: ['#6161ff', '#00ca72', '#ffcb00', '#fb275d', '#ff6b10'] });
         }
     } catch (e) {
         showToast(e.message || 'Error al generar la imagen');
