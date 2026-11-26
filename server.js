@@ -114,6 +114,13 @@ const SCENES = [
   'la persona sentada sobre una pila de libros grandes, con la laptop abierta sobre las piernas, chocando los cinco con el agente, que está de pie frente a ella celebrando'
 ];
 
+// Fondos de estudio de la marca (generados en Google Flow), se pasan como referencia del set
+const BACKDROPS = [
+  { name: 'gris claro', file: path.join(__dirname, 'public', 'img', 'fondos', 'estudio-gris.jpg') },
+  { name: 'beige arena', file: path.join(__dirname, 'public', 'img', 'fondos', 'estudio-beige.jpg') },
+  { name: 'rosa rubor', file: path.join(__dirname, 'public', 'img', 'fondos', 'estudio-rubor.jpg') }
+];
+
 // Ruta principal
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -128,7 +135,8 @@ app.post('/api/generate', upload.single('image'), async (req, res) => {
     }
     const agentPath = path.join(__dirname, 'public', 'agents', `agent-${agentId}.jpg`);
     const scene = SCENES[Math.floor(Math.random() * SCENES.length)];
-    const prompt = `Tienes dos imágenes de referencia. La PRIMERA es una foto de una persona real. La SEGUNDA es un personaje 3D estilizado (el "agente" de monday.com).
+    const backdrop = BACKDROPS[Math.floor(Math.random() * BACKDROPS.length)];
+    const prompt = `Tienes tres imágenes de referencia. La PRIMERA es una foto de una persona real. La SEGUNDA es un personaje 3D estilizado (el "agente" de monday.com). La TERCERA es el fondo de estudio (${backdrop.name}) que debes usar como set: mismo color, textura e iluminación.
 Genera UNA sola fotografía nueva, vertical 3:4, al estilo de la campaña "Usuarios y agentes" de monday.com: ${scene}. Son compañeros de equipo (human + agent).
 
 PERSONA (lo más importante: debe verse como una FOTOGRAFÍA REAL, no como ilustración ni render):
@@ -148,7 +156,7 @@ LAPTOP: la persona sostiene o usa una laptop plateada genérica (sin logotipo), 
 ESPÍRITU DE MARCA (valores de monday.com): la persona es la PROTAGONISTA y el logro es suyo; el agente está a su servicio, ayudándola a tener éxito, nunca le roba el protagonismo (la persona ligeramente más al frente o más centrada). Transmite confianza, cercanía y complicidad genuina entre ambos, y la energía de dos "constructores" creando algo juntos.
 
 SET (mundo híbrido de monday.com, limpio como estudio):
-- Fondo continuo de estudio sin costuras, plano y liso, en UN solo tono suave: gris claro, blanco, beige o rosa palo (rubor). Sin paredes, sin oficina, sin decoración, sin formas gráficas.
+- Fondo continuo de estudio sin costuras, plano y liso, igual al de la TERCERA imagen de referencia (${backdrop.name}). Sin paredes, sin techo, sin lámparas, sin oficina, sin decoración, sin formas gráficas.
 - Atrezzo mínimo y simple solo si la escena lo pide: un taburete negro, una silla sencilla, una caja de madera o una pila de libros.
 - Iluminación de estudio uniforme, brillante y limpia, con sombras suaves y controladas; plana y fresca, nada dramática ni melancólica. Colores naturales, con el agente aportando el color vibrante.
 - Encuadre de cuerpo completo o 3/4, personajes centrados con aire alrededor. Grano fotográfico muy fino y sutil.
@@ -173,7 +181,8 @@ SIN TEXTO, SIN LETRAS, SIN LOGOS, SIN PALABRAS en ninguna parte de la imagen.`;
     const parts = [
       { text: prompt },
       { inlineData: { mimeType: req.file.mimetype, data: base64Image } },
-      { inlineData: { mimeType: 'image/jpeg', data: fs.readFileSync(agentPath).toString('base64') } }
+      { inlineData: { mimeType: 'image/jpeg', data: fs.readFileSync(agentPath).toString('base64') } },
+      { inlineData: { mimeType: 'image/jpeg', data: fs.readFileSync(backdrop.file).toString('base64') } }
     ];
 
     console.log('Generando retrato Human + Agent con Gemini 2.5...');

@@ -6,6 +6,7 @@ let selectedAgent = null;
 function show(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     $(id).classList.add('active');
+    document.body.classList.toggle('inner', id !== 's-welcome');
     window.scrollTo(0, 0);
 }
 

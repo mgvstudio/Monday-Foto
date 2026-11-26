@@ -15,6 +15,9 @@
 :root{--bg:#ffffff;--card:#f5f6f8;--violet:#6161ff;--purple:#6161ff;--green:#00ca72;--yellow:#ffcb00;--red:#fb275d;--text:#181b34;--muted:#676879}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+#bgVideo{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+#bgVeil{position:fixed;inset:0;background:rgba(255,255,255,0);z-index:-1;transition:background .4s;pointer-events:none}
+body.inner #bgVeil{background:rgba(255,255,255,.88)}
 .logo{position:fixed;top:18px;left:28px;font-weight:800;font-size:1.7rem;letter-spacing:-1px;z-index:10;display:flex;align-items:center;gap:6px}
 .logo small{font-size:.6em;font-weight:600;color:var(--muted)}
 .logo img{height:46px}
@@ -63,6 +66,8 @@ h1 .light{color:var(--violet)}h1 .plus{color:var(--green)}
 </style>
 </head>
 <body oncontextmenu="return false;">
+<video id="bgVideo" autoplay muted loop playsinline poster="img/fondos/bg-plataforma.jpg"><source src="video/bg-loop.mp4" type="video/mp4"></video>
+<div id="bgVeil"></div>
 <div class="logo"><img src="img/monday-logo-dark.png" alt="monday.com" onerror="this.remove();document.getElementById('wm').style.display='flex'"><span id="wm" style="display:none;align-items:center;gap:6px"><span class="dots"><i style="background:#fb275d"></i><i style="background:#ffcb00"></i><i style="background:#00ca72"></i></span>monday<small>.com</small></span></div>
 
 <!-- 1. Bienvenida + términos -->
